@@ -1,0 +1,58 @@
+{
+  "name": "electron-react-typescript-router",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Electron + React + TypeScript starter with React Router and 5 example pages.",
+  "main": "dist-electron/main.js",
+  "author": "you",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k \"tsc -w -p electron\" \"vite\" \"wait-on tcp:3000 && wait-on dist-electron/main.js && cross-env NODE_ENV=development electron .\"",
+    "start": "cross-env NODE_ENV=development electron .",
+    "build": "rimraf dist-electron && tsc -p electron && vite build",
+    "package": "npm run build && electron-builder",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist dist-electron"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "react": "*",
+    "react-dom": "*",
+    "react-router-dom": "*"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@vitejs/plugin-react": "*",
+    "concurrently": "*",
+    "cross-env": "*",
+    "electron": "*",
+    "electron-builder": "*",
+    "rimraf": "*",
+    "typescript": "*",
+    "vite": "*",
+    "wait-on": "*"
+  },
+  "build": {
+    "appId": "com.example.electronreacttsrouter",
+    "productName": "ElectronReactTSRouter",
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
