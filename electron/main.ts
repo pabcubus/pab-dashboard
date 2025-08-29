@@ -3,7 +3,6 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'node:path';
 import 'dotenv/config'
 
-debugger;
 const isDev = process.env.NODE_ENV === 'development';
 const { PORT } = process.env || { PORT: 5173 };
 
