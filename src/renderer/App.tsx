@@ -1,11 +1,14 @@
-
-import { Link, Routes, Route, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import AppLinks from './components/AppLinks'
+import AppRoutes from './components/AppRoutes'
+import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
-import About from './pages/About'
-import Settings from './pages/Settings'
-import Reports from './pages/Reports'
-import Help from './pages/Help'
+
+const PAGES = [
+  { path: "/", element: <Home />, title: "Home" },
+  { path: "/dashboard", element: <Dashboard />, title: "Dashboard" },
+]
 
 export default function App() {
   const location = useLocation()
@@ -20,23 +23,11 @@ export default function App() {
     <div className="app">
       <nav className="nav">
         <div className="brand">{appName || 'Electron + React + TS'}</div>
-        <div className="links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/reports">Reports</Link>
-          <Link to="/help">Help</Link>
-        </div>
+        <AppLinks links={PAGES} />
       </nav>
 
       <main className="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/help" element={<Help />} />
-        </Routes>
+        <AppRoutes routes={PAGES} />
       </main>
 
       <footer className="footer">
